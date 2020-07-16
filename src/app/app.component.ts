@@ -1,7 +1,9 @@
 import { ModalDirective } from 'ngx-bootstrap/modal';
 import { Component, OnInit, ElementRef } from '@angular/core';
 import { FilesService } from '../app/services/files.service';
+import { AlertService } from './services/alert.service';
 import { MessageSeverity } from './services/alert.service';
+
 
 @Component({
   selector: 'app-root',
@@ -63,7 +65,7 @@ export class AppComponent implements OnInit {
       this.alertService.showMessage(`Files uploaded successfully`, MessageSeverity.success, false)
     },
     error => {
-      this.alertService.showStickyMessage("",`File Upload Failed`, MessageSeverity.error, error, true);
+      this.alertService.showMessage(`File Upload Failed`, MessageSeverity.error, true);
       this.progress = false;
     });
   }

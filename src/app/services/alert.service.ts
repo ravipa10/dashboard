@@ -1,10 +1,10 @@
 import { Injectable } from '@angular/core';
 
+var alertify : any = require('../assets/alertify.js');
 @Injectable({
   providedIn: 'root'
 })
 
-var alertify : any = require('../assets/alertify.js');
 export class AlertService {
 
   constructor() { }
@@ -33,12 +33,12 @@ logWarning(msg) {
     this.showMessageHelper(message,severity,isSticky);
   }
 
-  showStickyMessage(message: string, severity: MessageSeverity, isSticky: Boolean){
-    if (!severity)
-      severity = MessageSeverity.default;
+  // showStickyMessage(message: string, severity: MessageSeverity, isSticky: Boolean){
+  //   if (!severity)
+  //     severity = MessageSeverity.default;
 
-    this.showMessageHelper(message,severity,isSticky);
-  }
+  //   this.showMessageHelper(message,severity,isSticky);
+  // }
   showMessageHelper(message: string, severity: MessageSeverity, isSticky: Boolean){
     switch (severity) {
       case MessageSeverity.default:
