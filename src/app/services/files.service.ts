@@ -1,15 +1,16 @@
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/catch';
-import { HttpClient } from '@angular/common/http';
+import { HttpClientModule, HttpClient } from '@angular/common/http';
+import { environment } from 'src/environments/environment';
 
 @Injectable({
   providedIn: 'root'
 })
 export class FilesService {
-  public baseUrl: string; //  set url
+  public baseUrl: string = environment.baseUrl; 
 
-  private readonly _FileUploadUrl: string = "/api/Attachment/Upload";
+  private readonly _FileUploadUrl: string = "/api/File/Upload";
   get fileUploadUrl() { return this.baseUrl + this._FileUploadUrl; }
 
   constructor(private http: HttpClient) { }

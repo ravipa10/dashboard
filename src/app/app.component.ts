@@ -1,8 +1,8 @@
 import { ModalDirective } from 'ngx-bootstrap/modal';
 import { Component, OnInit, ElementRef } from '@angular/core';
 import { FilesService } from '../app/services/files.service';
-import { AlertService } from './services/alert.service';
-import { MessageSeverity } from './services/alert.service';
+// import { AlertService } from './services/alert.service';
+// import { MessageSeverity } from './services/alert.service';
 
 
 @Component({
@@ -16,8 +16,8 @@ export class AppComponent implements OnInit {
   allFiles: any[] = [];
   progress: Boolean = false;
   fileUpload: ElementRef;
-
-  constructor(private filesService: FilesService, private alertService: AlertService) { }
+  // private alertService: AlertService
+  constructor(private filesService: FilesService) { }
 
   ngOnInit() {
   }
@@ -62,10 +62,10 @@ export class AppComponent implements OnInit {
     this.filesService.uploadFiles(this.allFiles).subscribe(event => {
       this.clear();
       this.progress = false;
-      this.alertService.showMessage(`Files uploaded successfully`, MessageSeverity.success, false)
+      // this.alertService.showMessage(`Files uploaded successfully`, MessageSeverity.success, false)
     },
     error => {
-      this.alertService.showMessage(`File Upload Failed`, MessageSeverity.error, true);
+      // this.alertService.showMessage(`File Upload Failed`, MessageSeverity.error, true);
       this.progress = false;
     });
   }

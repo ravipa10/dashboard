@@ -19,8 +19,6 @@
   <ul>
     <li *ngFor ="let file of allFiles; let i=index">
       <label>{{file.name}}</label>
-      <p>{{file.size}}</p>
-      <app-progress [progress]="file.progress"></app-progress>
     </li>
   </ul>
 </div>
