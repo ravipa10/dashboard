@@ -40,6 +40,5 @@ export class FilesService {
     return this.http.post(this.fileUploadUrl, formData)
     .catch(error => this.handleError(error,()=>this.uploadFiles(files)));
     }
-
   
 }

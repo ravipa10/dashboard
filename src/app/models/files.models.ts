@@ -1,9 +1,8 @@
 export class files{
     id: number;
     filename: string;
+    path: string;
     labels: string;
-    uploadedBy: string;
     uploadedAt: Date;
-    modifiedBy: string;
     modifiedAt: Date;
 }
