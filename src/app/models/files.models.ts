@@ -1,6 +1,6 @@
 export class files{
     id: number;
-    filename: string;
+    fileName: string;
     path: string;
     labels: string;
     uploadedAt: Date;

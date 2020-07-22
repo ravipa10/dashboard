@@ -23,11 +23,44 @@
   </ul>
 </div>
   <div class="col-md-12">
-    <button class="btn btn-primary margin-all-sides" (click)="uploadFiles()">
+    <button class="btn btn-success margin-all-sides" (click)="uploadFiles()" title="Upload file(s)">
       <span class="glyphicon glyphicon-cloud-upload"></span> Upload </button>
-    <button class="btn btn-danger margin-all-sides" (click)="clear()">
-      <span class="glyphicon glyphicon-remove"></span></button>
+    <button class="btn btn-danger margin-all-sides" (click)="clear()" title="Clear file(s)">
+      <span class="glyphicon glyphicon-remove"></span> Clear </button>
   </div>
+  <div class="col-md-12">
+    <span class="glyphicon glyphicon-paperclip"></span><B> View Files
+      <a href="javascript:;" (click)="refreshFiles()">
+        <span class="glyphicon glyphicon-refresh" title="Refresh"></span>
+      </a>
+    </B>
+  </div>
+  <div class="col-md-12" *ngIf="Files==null">
+    <span>No Files to display</span>
+  </div>
+  <ng-container *ngIf="Files">
+    <table class="table col-md-12">
+      <thead>
+        <tr>
+          <th class="col-md-3">File Name</th>
+          <th class="col-md-3">Labels</th>
+          <th class="col-md-2">Updated At</th>
+          <th class="col-md-2">Modified At</th>
+          <th class="col-md-2"></th>
+        </tr>
+      </thead>
+      <tbody *ngFor="let i = index; let file of Files">
+          <td class="col-md-3">{{file.fileName}}</td>
+          <td class="col-md-3">{{file.labels}}</td>
+          <td class="col-md-2">{{file.uploadedAt}}</td>
+          <td class="col-md-2">{{file.modifiedAt}}</td>
+          <td class="col-md-2">
+            <button class="btn btn-primary btn-margin-right" (click)="deleteFile(file.id,i)" title="Delete">
+              <span class="glyphicon glyphicon-remove"></span> Delete </button>
+          </td>
+      </tbody>      
+    </table>
+  </ng-container>
 </div>
 
 
