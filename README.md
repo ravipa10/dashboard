@@ -25,3 +25,21 @@ Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protrac
 ## Further help
 
 To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI README](https://github.com/angular/angular-cli/blob/master/README.md).
+
+## IDE
+
+Visual Studio Code
+
+## Libraries installed
+
+Installed Node and NPM
+
+Angular CLI
+npm install -g @angular/cli@latest
+
+BootStrap
+npm install ngx-bootstrap --save
+
+RxJS
+npm install rxjs
+npm i rxjs-compat
