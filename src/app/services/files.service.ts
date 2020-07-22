@@ -56,8 +56,9 @@ export class FilesService {
     }
 
     deleteFile(fileId: number): Observable<number> {
-      return this.http.delete<number>(this.deleteFileUrl + "/" + fileId.toString())
+      return this.http.get<number>(this.deleteFileUrl + "/" + fileId.toString())
        .catch(error => this.handleError(error,()=>this.deleteFile(fileId)));
+
   }
   
 }

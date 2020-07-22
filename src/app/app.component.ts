@@ -25,6 +25,7 @@ export class AppComponent implements OnInit {
 
   ngOnInit() {
     this.getAllFiles();
+    console.log(this.Files);
   }
 
   detectFiles(event) {
@@ -91,7 +92,7 @@ export class AppComponent implements OnInit {
       this.filesArray = [];
       for (let file of this.Files) {
           this.filesArray.push(file);
-          console.log(file.fileName)
+          //console.log(file.fileName)
       }
     });
   }
