@@ -15,15 +15,19 @@
       <div>Drag and drop file(s) here</div>
     </div>
   </div>
-<div class="col-md-12">
-  <ul>
-    <li *ngFor ="let file of allFiles; let i=index">
-      <label>{{file.name}}</label>
-    </li>
-  </ul>
-</div>
   <div class="col-md-12">
-    <button class="btn btn-success margin-all-sides" (click)="uploadFiles()" title="Upload file(s)">
+    <ul>
+      <li *ngFor="let file of allFiles; let i = index">
+        <label>{{file.name}}</label>
+        <!-- <input *ngIf="addLabels" placeholder="Enter file Description" class="form-control" type="text" size="20" [(ngModel)]="file.fileDesc" multiple>
+        <input *ngIf="addLabels" placeholder="Enter file Label(s)" class="form-control" type="text" size="20" [(ngModel)]="file.labels" multiple> -->
+        <!-- <button *ngIf="addLabels" class="btn btn-primary margin-all-sides" (click)="saveMetaData(file,i)">Save</button>
+        <button *ngIf="addLabels" class="btn btn-primary margin-all-sides" (click)="cancel()">Cancel</button> -->
+      </li>
+    </ul>
+  </div>
+  <div class="col-md-12">
+    <button class="btn btn-primary margin-all-sides" (click)="uploadFiles()" title="Upload file(s)">
       <span class="glyphicon glyphicon-cloud-upload"></span> Upload </button>
     <button class="btn btn-danger margin-all-sides" (click)="clear()" title="Clear file(s)">
       <span class="glyphicon glyphicon-remove"></span> Clear </button>
@@ -33,40 +37,73 @@
   </div>
   <hr>
   <div class="col-md-12">
-    <span class="glyphicon glyphicon-paperclip"></span><B> View Files
+    <h3>View Files
       <a href="javascript:;" (click)="refreshFiles()">
         <span class="glyphicon glyphicon-refresh" title="Refresh"></span>
       </a>
-    </B>
+    </h3>
   </div>
   <div class="col-md-12" *ngIf="Files.length == 0">
     <span>No Files to display</span>
   </div>
-  <ng-container *ngIf="Files">
+  <div  *ngIf="Files">
+  <div>
+    <div>
+      <div *ngIf="!addMetadata" colspan="5" class="col-md-2">
+        <button class="btn btn-primary btn-margin-right" (click)="addMeta()" title="Add Metadata"> Add Metadata </button>
+      </div>    
+      <div class="col-md-2" colspan="5" *ngIf="addMetadata">
+          <button class="btn btn-primary btn-margin-right" (click)="saveMetadata()" title="Save Metadata"> Save </button>
+          <button class="btn btn-primary margin-all-sides" (click)="cancel()">Cancel</button>
+      </div> 
+    </div> 
+  </div>
     <table class="table table-hover col-md-12">
       <thead class="thead-light">
         <tr>
-          <th scope="col" class="col-md-3">File Name</th>
-          <th scope="col" class="col-md-3">Labels</th>
-          <th scope="col" class="col-md-2">Updated At</th>
-          <th scope="col" class="col-md-2">Modified At</th>
-          <th scope="col" class="col-md-2"></th>
+          <th class="col-md-3">File Name</th>          
+          <th class="col-md-3">File Description</th>
+          <th class="col-md-2">Labels</th>
+          <th class="col-md-2">Updated At</th> 
+          <th *ngIf="!addMetadata"  class="col-md-2"></th>         
+          <!-- <th *ngIf="!addMetadata"  class="col-md-2">
+            <button class="btn btn-primary btn-margin-right" (click)="addMeta()" title="Add Metadata"> Add Metadata </button>
+          </th>    
+          <th class="col-md-2" *ngIf="addMetadata">
+              <button class="btn btn-primary btn-margin-right" (click)="saveMetadata(file,i)" title="Save Metadata"> Save </button>
+              <button class="btn btn-primary margin-all-sides" (click)="cancel()">Cancel</button>
+          </th> -->
         </tr>
       </thead>
       <tbody *ngFor="let i = index; let file of Files">
         <tr>
           <td class="col-md-3">{{file.fileName}}</td>
-          <td class="col-md-3">{{file.labels}}</td>
+          <td *ngIf="!addMetadata" class="col-md-3">{{file.fileDesc}}</td>
+          <td *ngIf="addMetadata" class="col-md-3">
+            <input placeholder="Enter file Description" class="form-control" type="text" size="20" [(ngModel)]="file.fileDesc">
+          </td>
+          <td *ngIf="!addMetadata" class="col-md-2">{{file.labels}}</td>
+          <td *ngIf="addMetadata" class="col-md-2">
+            <input placeholder="Enter file Label" class="form-control" type="text" size="20" [(ngModel)]="file.labels">
+          </td>
           <td class="col-md-2">{{file.uploadedAt}}</td>
-          <td class="col-md-2">{{file.modifiedAt}}</td>
-          <td class="col-md-2">
+          <td *ngIf="!addMetadata" class="col-md-2">
             <button class="btn btn-primary btn-margin-right" (click)="deleteFile(file.id,i)" title="Delete">
               <span class="glyphicon glyphicon-remove"></span> Delete </button>
-          </td>
+          </td>     
         </tr>
-      </tbody>      
+        <!-- <tr>
+          <td *ngIf="!addMetadata" colspan="5" class="col-md-2">
+            <button class="btn btn-primary btn-margin-right" (click)="addMeta()" title="Add Metadata"> Add Metadata </button>
+          </td>    
+          <td class="col-md-2" colspan="5" *ngIf="addMetadata">
+              <button class="btn btn-primary btn-margin-right" (click)="saveMetadata(file,i)" title="Save Metadata"> Save </button>
+              <button class="btn btn-primary margin-all-sides" (click)="cancel()">Cancel</button>
+          </td> 
+        </tr> -->
+      </tbody>     
     </table>
-  </ng-container>
+  </div>
 </div>
 
 

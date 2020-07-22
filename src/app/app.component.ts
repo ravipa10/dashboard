@@ -18,6 +18,7 @@ export class AppComponent implements OnInit {
   Files: files[] = [];
   filesArray: files[] = [];
   progress: Boolean = false;
+  addMetadata: Boolean = false;
   @ViewChild("fileUpload")
   fileUpload: ElementRef;
   // private alertService: AlertService
@@ -25,7 +26,7 @@ export class AppComponent implements OnInit {
 
   ngOnInit() {
     this.getAllFiles();
-    console.log(this.Files);
+    //console.log(this.Files);
   }
 
   detectFiles(event) {
@@ -110,5 +111,45 @@ export class AppComponent implements OnInit {
         error => {}
     );
   }
+
+  addMeta(){
+    this.addMetadata = true;
+  }
+
+  // saveMetadata(file: File, index){
+  //   if (this.Files.length === 0)
+  //     return;
+
+  //   this.filesService.saveMetadata(file).subscribe(data => {
+  //     this.Files[index] = data;
+  //     this.addMetadata = false;
+  //     // this.alertService.showMessage(`Files uploaded successfully`, MessageSeverity.success, false)
+  //   },
+  //   error => {
+  //     this.addMetadata = false;
+  //     // this.alertService.showMessage(`File Upload Failed`, MessageSeverity.error, true);
+  //   });
+  // }
+
+  saveMetadata(){
+    if (this.Files.length === 0)
+      return;
+
+    this.filesService.saveMetadata(this.Files).subscribe(data => {
+      this.Files = data;
+      this.addMetadata = false;
+      // this.alertService.showMessage(`Files uploaded successfully`, MessageSeverity.success, false)
+    },
+    error => {
+      this.addMetadata = false;
+      // this.alertService.showMessage(`File Upload Failed`, MessageSeverity.error, true);
+    });
+  }
+
+  cancel(){
+    this.addMetadata = false;
+  }
+
+
 
 }

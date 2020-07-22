@@ -14,10 +14,12 @@ export class FilesService {
   private readonly _FileUploadUrl: string = "/api/File/Upload";
   private readonly _GetAllFilesUrl: string = "/api/File/View";
   private readonly _DeleteFilesUrl: string = "/api/File/Delete";
+  private readonly _SaveMetadataUrl: string = "/api/File/SaveMetadata";
 
   get fileUploadUrl() { return this.baseUrl + this._FileUploadUrl; }
   get getAllFilesUrl() { return this.baseUrl + this._GetAllFilesUrl; }
   get deleteFileUrl() { return this.baseUrl + this._DeleteFilesUrl; }
+  get saveMetadataUrl() { return this.baseUrl + this._SaveMetadataUrl; }
 
   constructor(private http: HttpClient) { }
 
@@ -27,7 +29,7 @@ export class FilesService {
 
   getRequestHeaders(): { headers: HttpHeaders | { [header: string]: string | string[]; } } {
     let headers = new HttpHeaders({
-        'Access-Control-Allow-Origin': 'https://localhost:4200',
+        'Access-Control-Allow-Origin': 'http://localhost:4200',
         'Content-Type': 'application/json',
         'Accept': `application/vnd.iman.v1+json, application/json, text/plain, */*`
     });
@@ -39,12 +41,11 @@ export class FilesService {
   uploadFiles(files: any):Observable<any>
     {
       if(files==null){
-
+        return;
       }
       const formData = new FormData();
       for (let file of files) {
-            var info = file.name;
-          formData.append(info, file);
+          formData.append(file.name, file);
       }
     return this.http.post(this.fileUploadUrl, formData)
     .catch(error => this.handleError(error,()=>this.uploadFiles(files)));
@@ -58,7 +59,9 @@ export class FilesService {
     deleteFile(fileId: number): Observable<number> {
       return this.http.get<number>(this.deleteFileUrl + "/" + fileId.toString())
        .catch(error => this.handleError(error,()=>this.deleteFile(fileId)));
-
-  }
-  
+    }
+    saveMetadata(files: any): Observable<any> {
+    return this.http.post(this.saveMetadataUrl,files)
+     .catch(error => this.handleError(error,()=>this.saveMetadata(files)));
+    }
 }
