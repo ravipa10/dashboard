@@ -43,3 +43,9 @@ npm install ngx-bootstrap --save
 RxJS
 npm install rxjs
 npm i rxjs-compat
+
+## NOTE:
+
+Run API first ans then make request from front-end. 
+
+If the port number of API is different in your machine, please change the localhost url of the API has to be set in the environment.ts file of front-end Angular app.
