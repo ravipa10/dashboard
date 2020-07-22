@@ -9,20 +9,10 @@
   <div class="margin-all-sides col-md-12">
     <input #fileUpload type="file" (change)="detectFiles($event)" multiple />
   </div>
-  <div class="row-md-2" class="margin-all-sides">
-    <div class="col-md-4" id="dropZone" (drop)="dropHandler($event);" (dragover)="dragOverHandler($event);" appDnd>
-      <div class="glyphicon glyphicon-cloud-upload"></div>
-      <div>Drag and drop file(s) here</div>
-    </div>
-  </div>
   <div class="col-md-12">
     <ul>
       <li *ngFor="let file of allFiles; let i = index">
         <label>{{file.name}}</label>
-        <!-- <input *ngIf="addLabels" placeholder="Enter file Description" class="form-control" type="text" size="20" [(ngModel)]="file.fileDesc" multiple>
-        <input *ngIf="addLabels" placeholder="Enter file Label(s)" class="form-control" type="text" size="20" [(ngModel)]="file.labels" multiple> -->
-        <!-- <button *ngIf="addLabels" class="btn btn-primary margin-all-sides" (click)="saveMetaData(file,i)">Save</button>
-        <button *ngIf="addLabels" class="btn btn-primary margin-all-sides" (click)="cancel()">Cancel</button> -->
       </li>
     </ul>
   </div>
@@ -66,13 +56,6 @@
           <th class="col-md-2">Labels</th>
           <th class="col-md-2">Updated At</th> 
           <th *ngIf="!addMetadata"  class="col-md-2"></th>         
-          <!-- <th *ngIf="!addMetadata"  class="col-md-2">
-            <button class="btn btn-primary btn-margin-right" (click)="addMeta()" title="Add Metadata"> Add Metadata </button>
-          </th>    
-          <th class="col-md-2" *ngIf="addMetadata">
-              <button class="btn btn-primary btn-margin-right" (click)="saveMetadata(file,i)" title="Save Metadata"> Save </button>
-              <button class="btn btn-primary margin-all-sides" (click)="cancel()">Cancel</button>
-          </th> -->
         </tr>
       </thead>
       <tbody *ngFor="let i = index; let file of Files">
@@ -92,15 +75,6 @@
               <span class="glyphicon glyphicon-remove"></span> Delete </button>
           </td>     
         </tr>
-        <!-- <tr>
-          <td *ngIf="!addMetadata" colspan="5" class="col-md-2">
-            <button class="btn btn-primary btn-margin-right" (click)="addMeta()" title="Add Metadata"> Add Metadata </button>
-          </td>    
-          <td class="col-md-2" colspan="5" *ngIf="addMetadata">
-              <button class="btn btn-primary btn-margin-right" (click)="saveMetadata(file,i)" title="Save Metadata"> Save </button>
-              <button class="btn btn-primary margin-all-sides" (click)="cancel()">Cancel</button>
-          </td> 
-        </tr> -->
       </tbody>     
     </table>
   </div>

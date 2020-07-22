@@ -116,21 +116,6 @@ export class AppComponent implements OnInit {
     this.addMetadata = true;
   }
 
-  // saveMetadata(file: File, index){
-  //   if (this.Files.length === 0)
-  //     return;
-
-  //   this.filesService.saveMetadata(file).subscribe(data => {
-  //     this.Files[index] = data;
-  //     this.addMetadata = false;
-  //     // this.alertService.showMessage(`Files uploaded successfully`, MessageSeverity.success, false)
-  //   },
-  //   error => {
-  //     this.addMetadata = false;
-  //     // this.alertService.showMessage(`File Upload Failed`, MessageSeverity.error, true);
-  //   });
-  // }
-
   saveMetadata(){
     if (this.Files.length === 0)
       return;

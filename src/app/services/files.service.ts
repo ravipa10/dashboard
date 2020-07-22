@@ -60,8 +60,8 @@ export class FilesService {
       return this.http.get<number>(this.deleteFileUrl + "/" + fileId.toString())
        .catch(error => this.handleError(error,()=>this.deleteFile(fileId)));
     }
-    saveMetadata(files: any): Observable<any> {
-    return this.http.post(this.saveMetadataUrl,files)
+    saveMetadata(files: files[]): Observable<files[]> {
+    return this.http.post<files[]>(this.saveMetadataUrl,files)
      .catch(error => this.handleError(error,()=>this.saveMetadata(files)));
     }
 }
